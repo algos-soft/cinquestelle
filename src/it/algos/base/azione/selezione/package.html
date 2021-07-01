@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+Azioni della <CODE>Lista</CODE> che riguardano la <i>selezione</i> delle righe.
+<p>
+    Queste azioni influenzano solo la selezione a video dei records,
+    e non le modificazioni di quelli <i>fisici</i> sul database:
+<ul>
+    <li><CODE>AzCaricaTutti</CODE> esegue una <CODE>select</CODE> sul
+        database, ricarica e mostra a video <i>tutti</i> i records secondo il filtro
+        esistente in quel momento - nessuna riga della <CODE>JTable</CODE> &egrave
+        selezionata
+    </li>
+    <li><CODE>AzNascondeSelezionati</CODE> esegue una <CODE>select</CODE> sul
+        database, ricarica e mostra a video <i>tutti i records meno quelli selezionati</i>
+        secondo il filtro esistente in quel momento
+    </li>
+    <li><CODE>AzSoloSelezionati</CODE> esegue una <CODE>select</CODE> sul
+        database, ricarica e mostra a video <i>solo i records selezionati</i>
+        secondo il filtro esistente in quel momento
+    </li>
+</ul>
+</BODY>
+</HTML>

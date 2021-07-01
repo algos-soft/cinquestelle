@@ -1,0 +1,3 @@
+Created-By: Algos
+Class-Path: base.jar
+Main-Class: /Users/gac/algos/it/algos/base/selezione/SelezioneModulo

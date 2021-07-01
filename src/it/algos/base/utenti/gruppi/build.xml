@@ -1,0 +1,52 @@
+<project name = "categoria" default = "dist" basedir = ".">
+
+    <!-- proprieta' globali di questo build -->
+    <property name = "baseFolder" value = "it/algos/albergo/ristorante"/>
+    <property name = "baseOutFolder" location = "${user.home}/algos-work/"/>
+    <property name = "baseBuildFolder" location = "${baseOutFolder}/build"/>
+    <property name = "baseDistFolder" location = "${baseOutFolder}/dist"/>
+    <property name = "src" location = "."/>
+    <property name = "build" location = "${baseBuildFolder}/${ant.project.name}"/>
+    <property name = "dist" location = "${baseDistFolder}/ristorante"/>
+
+    <target name = "init">
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir = "${build}"/>
+    </target>
+
+    <target name = "compile" depends = "init" description = "compilazione del sorgente">
+        <!-- Compila il java code da ${src} a ${build} -->
+        <javac srcdir = "${src}" destdir = "${build}" includes = "**/*.java"/>
+    </target>
+
+    <target name = "copy" depends = "compile" description = "copia files accessori">
+        <!-- Copia tutti i file non .java da ${src} a ${build} -->
+        <copy todir = "${build}/${baseFolder}/${ant.project.name}">
+            <fileset dir = "${src}">
+                <exclude name = "**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name = "dist" depends = "copy"
+            description = "generazione della distribuzione">
+        <!-- Crea la directory per la distribuzione -->
+        <mkdir dir = "${dist}"/>
+
+        <!-- Metti tutto ${build} nel file base.jar -->
+        <jar jarfile = "${dist}/${ant.project.name}.jar" manifest = "manifest.mf">
+            <zipfileset dir = "${build}"/>
+        </jar>
+
+    </target>
+
+    <target name = "clean"
+            description = "clean up">
+        <!-- Cancella le directory ${build} e ${dist} -->
+        <delete dir = "${build}"/>
+        <delete dir = "${dist}"/>
+    </target>
+
+</project>

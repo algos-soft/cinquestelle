@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+Regola la presentazione dei dati di un <CODE>Modulo</CODE>.
+<p>
+    Qualunque presentazione di dati all&#8217; utente <STRONG>deve</STRONG> passare
+    dal navigatore <BR>
+    Ogni <CODE>Modulo</CODE> pu&ograve; avere <I><STRONG>n</STRONG></I> navigatori <BR>
+    Un navigatore controlla la presentazione a video ed i rapporti tra
+    <CODE>Lista</CODE>, <CODE>Scheda</CODE> e <CODE>Dialogo</CODE> <BR>
+    Un navigatore gestisce i pannelli e le finestre che contengono lista,
+    scheda e dialogo
+
+<p>
+
+    Un navigatore contiene graficamente <STRONG>solo</STRONG> due tipi di
+    oggetti:
+<ul>
+    <li> pannelli</li>
+    <li> un'altro navigatore</li>
+</ul>
+
+Un pannello pu� essere di 5 tipi:
+<ul>
+    <li> pannello navigatore</li>
+    <li> pannello lista master</li>
+    <li> pannello lista slave</li>
+    <li> pannello scheda</li>
+    <li> pannello dialogo</li>
+</ul>
+
+I pannelli vengono inseriti in una finestra per essere visualizzati.
+Le finestre possono essere di 3 tipi:
+<ul>
+    <li> finestra navigatore</li>
+    <li> finestra lista</li>
+    <li> finestra scheda</li>
+</ul>
+
+A seconda del numero di finestre possibili, il navigatore pu&ograve; avere
+<ul>
+    <li>finestre multiple</li>
+    <li>finestra singola</li>
+</ul>
+
+Nella finestre multiple:
+<ul>
+    <li>la prima finestra obbligatoriamente � una finestra lista</li>
+    <li>la seconda finestra (non necessariamente visibile), � una finestra scheda</li>
+    <li>altre (eventuali) finestre, sono finestre scheda</li>
+    <li>altre finestre scheda servono per i dialoghi</li>
+</ul>
+
+La finestra singola pu� essere:
+<ul>
+    <li> finestra navigatore - con pannello lista master e pannello lista slave</li>
+    <li> finestra navigatore - con pannello lista master e pannello scheda</li>
+    <li> finestra navigatore - con pannello lista master e pannello navigatore</li>
+    <li> finestra lista - con pannello lista master</li>
+    <li> finestra lista - con pannello lista slave</li>
+    <li> finestra scheda - pannello scheda</li>
+    <li> finestra scheda - pannello dialogo</li>
+</ul>
+<p>
+
+    Ogni navigatore ha una <CODE>Lista</CODE> e <I><STRONG>n</STRONG></I>
+    <CODE>Schede</CODE> <BR>
+    Ogni navigatore pu&ograve; mostrare o meno la <CODE>Lista</CODE> <br>
+    Ogni navigatore pu&ograve; mostrare o meno le <CODE>Schede</CODE> <br>
+    Un navigatore pu&ograve; usare pi&ugrave; finestre per mostrare
+    <CODE>Lista</CODE> e <CODE>Schede</CODE>, oppure raggruppare tutto in
+    un&#8217; unica finestra <BR>
+</BODY>
+</HTML>

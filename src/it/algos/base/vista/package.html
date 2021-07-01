@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+La Vista rappresenta il modello utilizzato per la costruzione della Lista.
+<p>
+    La Vista contiene una collezione oggetti di classe VistaElemento.
+
+<p>
+    Un oggetto VistaElemento puo' contenere a sua volta quattro tipi di oggetti:
+
+<p>
+<li> - un nome interno di campo</li>
+<li> - un oggetto Campo</li>
+<li> - un nome di lista</li>
+<li> - un oggetto Lista</li>
+<p>
+    La classe VistaFactory contiene i metodi per creare una Vista e aggiungervi
+    gli elementi dei vari tipi.
+
+<p>
+    In fase di creazione, la Vista puo' contenere elementi di tipo diverso.
+
+<p>
+    In fase di inizializzazione, tutti gli elementi della Vista vengono espansi
+    fino ad arrivare a soli elementi di tipo Campo.
+
+<p>
+
+<p>
+    Gli elementi di una Vista possono essere visibili o invisibili.
+
+<p>
+    Quando si costruisce una Lista, gli elementi visibili vengono effettivamente
+    visualizzati, mentre quelli invisibili restano nel modello dati (nella Query)
+    della Lista e sono accessibili per effettuare dei calcoli.
+
+<p>
+
+<p>
+    Se un Elemento della Vista contiene un campo linkato, questo si espande fino
+    a contenere tutti i campi derivanti dalla Vista o dalla Colonna linkata
+    al campo stesso.
+
+<p>
+
+<p>
+    La visibilita' della parte originale e della parte espansa del campo dipendono
+    dalla impostazione di due flag dell'Elemento:
+
+<p>
+    <CODE>isVisibileOriginale</CODE> determina se la parte originale (il link) e'
+    visibile
+
+<p>
+    <CODE>isVisibileEspansione</CODE> determina se la parte espansa (i campi/viste
+    collegati) e' visibile.
+    In fase di creazione, e' possibile (con gli appositi metodi Factory),
+    aggiungere un elemento a una Vista in qualita' di elemento visibile (default)
+    o invisibile.
+
+<p>
+
+<p>
+    Se si aggiunge un elemento invisibile, tutti gli elementi derivanti dalla sua
+    espansione saranno a loro volta invisibili.
+
+<p>
+    Se si aggiunge un elemento visibile, la visibilita' degli elementi derivanti
+    dall'espansione ereditera' la visibilita' definita nell'elemento espanso.
+
+<p>
+    Aggiungendo un elemento a una Vista, l'elemento eredita le caratteristiche
+    (tipo di espansione, ecc...) dal proprio contenuto.
+    Dopo aver aggiunto un elemento a una Vista, e' possibile regolare ulteriormente
+    le caratteristiche dell'elemento per la vista specifica (i metodi Factory
+    restituiscono sempre un riferimento all'elemento aggiunto).
+
+<p>
+
+<p>
+    Per ogni Modulo viene creata automaticamente una Vista di default.
+
+<p>
+    Ogni campo possiede due flag che determinano la sua presenza e la sua
+    visibilita' nella Vista di default:
+
+<p>
+    <CODE>isPresenteVistaDefault</CODE> determina se il campo verra' incluso
+    nella Vista di default
+
+<p>
+    <CODE>isVisibileVistaDefault</CODE> determina se il campo verra' incluso
+    nella Vista di default in qualita' di campo visibile.
+
+<p>
+    Se un campo viene impostato come visibile nella vista default, e'
+    automaticamente impostato anche come presente nella vista default.
+    Pertanto, per tutti i campi che si vogliono includere nella Vista default
+    come visibili, e' sufficiente accendere il
+    flag <CODE>isVisibileVistaDefault</CODE>
+
+<p>
+    I campi <CODE>codice</CODE> e <CODE>ordine</CODE> del ModelloAlgos sono
+    sempre impostati come presenti ma non visibili nella vista default.
+
+<p>
+
+<p>
+    Esempio di costruzione di una Vista da un Modello specifico:
+
+<p>
+    <CODE>
+        /* crea una nuova vista per il Modello */<br>
+        unaVista = this.creaVista("nomevista");<br>
+        <br>
+        /* aggiunge il campo di nome "citta" di questo modulo */<br>
+        VistaFactory.addCampo(unaVista, "citta");<br>
+        <br>
+        /* aggiunge l'oggetto campo "cap" di questo modulo */<br>
+        unCampo = this.getCampo("cap");<br>
+        VistaFactory.addCampo(unaVista, unCampo);<br>
+        <br>
+        /* aggiunge il campo di nome "provincia" di un altro modulo */<br>
+        VistaFactory.addCampo(unaVista, "provincia", unAltroModulo);<br>
+        <br>
+        /* aggiunge l'oggetto campo "sigla" di un altro modulo */<br>
+        unModulo = Progetto.getModulo("provincia");<br>
+        unCampo = unModulo.getCampo("sigla");<br>
+        VistaFactory.addCampo(unaVista, unCampo);<br>
+        <br>
+        /* aggiunge la vista di nome "pippo" di questo modulo */<br>
+        VistaFactory.addVista(unaVista, "pippo");<br>
+        <br>
+        /* aggiunge l'oggetto vista "pippo" di questo modulo */<br>
+        unaVistaAggiunta = this.getVista("pippo")<br>
+        VistaFactory.addVista(unaVista, unaVistaAggiunta); <br>
+        <br>
+        /* aggiunge la vista di nome "pippo" di un altro modulo */<br>
+        unModulo = Progetto.getModulo("provincia");<br>
+        VistaFactory.addVista(unaVista, "pippo", unModulo); <br>
+        <br>
+        /* aggiunge il campo di nome "citta" di questo modulo <br>
+        * e regola alcune caratteristiche di espansione<br>
+        * in questa vista specifica */<br>
+        unElemento = VistaFactory.addCampo(unaVista, "citta");<br>
+        unElemento.setVisibileOriginale(true);<br>
+        <br>
+        /* aggiunge la vista al modello */<br>
+        this.addVista(unaVista);<br>
+
+        <p>
+    </CODE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'  ?>
+<!DOCTYPE toc
+        PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN"
+        "">
+<toc version = "1.0">
+    <tocitem text = "Algos System Help" image = "openbook">
+
+        <tocitem text = "Specifiche di progetto" target = "specifica.uno"/>
+
+        <tocitem text = "Informazioni generali" target = "top">
+            <tocitem text = "1 -Prefazione" image = "topic" target = "top"/>
+            <tocitem text = "4 -Installazione" image = "topic" target = "installazione"/>
+            <tocitem text = "5 -Dati Iniziali" image = "topic" target = "datiiniziali"/>
+        </tocitem>
+
+    </tocitem>
+</toc>

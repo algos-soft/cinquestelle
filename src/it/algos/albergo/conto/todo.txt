@@ -1,0 +1,27 @@
+Modifiche Conto
+
+
+*** DA FARE ***
+
+- Maiuscola automatica nei nomi e cognomi
+- no conto pari ciente e pari camera e pari anno
+- sicura sulla sequenza di esecuzione addebiti giornalieri /preferenza comune)
+- arrivo con stampato sulla intestazione del conto
+- Anteprima di stampa del conto
+
+
+
+*** FATTO ***
+
+10-07-07 Il backup locale copia solo l'azienda attiva.
+Il restore locale cancella sempre tutti i dati e li sostituisce con il backup.
+
+10-07-07 Quando registri una scheda vengono registrate anche le eventuali schede aperte in essa contenute (es. la scheda addebito nella scheda conto)
+
+10-07-07 Le finestre vengono centrate sullo schermo tenendo conto della barra di Windows (la scritta rossa dell'azienda attiva rimane visibile)
+
+24-07-07 i selettori del conto in Addebito e Addebiti Giornalieri mostrano solo i conti dell'azienda attiva, con la data di apertura per poter identificare meglio il conto
+
+25-07-07 riportato su tutte le pagine della scheda i dati di riferimento del conto
+
+25-07-07 sistemato funzionamento ricerche conto

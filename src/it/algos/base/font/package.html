@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+Questo package gestisce le font interne al programma.
+
+Per ovviare al problema della differenza e della disponibilit� delle font sulle diverse piattaforme,
+la gestione delle font � realizzata internamente al programma.
+
+Le font sono suddivise in Famiglie.
+Una Famiglia contiene tipicamente quattro Stili: Plain, Bold, Italic e Bold-Italic, ma potrebbe
+anche contenerne di meno. Per il momento, non pu� contenerne di pi�.
+
+Le font sono contenute in una apposita libreria. I file delle font devono essere nel formato
+Truetype Unicode Enabled.
+
+Un file Truetype definisce un singolo Stile.
+
+La libreria delle Font consiste in un file .jar contenente una cartella di base (fonts), disponibile
+nelle librerie. La cartella di base contiene una serie di cartelle rappresentanti i nomi delle
+Famiglie.
+
+Una cartella di Famiglia contiene i file delle font Truetype nei diversi stili.
+
+All'avvio del programma la libreria viene esaminata e vengono caricate tutte le famiglie
+disponibili. Per ogni Famiglia, vengono generati tanti stili quanti sono i file Truetype contenuti
+nella cartella.
+Viene creato un oggetto FamigliaFont per ogni cartella di Famiglia, e una collezione di tutte le
+Famiglie viene registrata nel Progetto.
+
+Lo stile viene determinato in base al primo carattere del nome del file, secondo la codifica
+seguente:
+0 = Plain
+1 = Bold
+2 = Italic
+3 = BoldItalic
+
+Se il primo carattere non � tra questi, lo stile viene impostato di default a Plain.
+
+Per creare una Font si utilizza la classe FontFactory, che costruisce le Font nelle diverse
+famiglie, dimensioni e stili.
+
+La libreria contiene anche una cartella di nome _default. Questa cartella contiene una famiglia di
+default che viene utilizzata dai metodi di creazione delle Font nel caso che la famiglia specificata
+non sia disponibile.
+
+L'indirizzo della cartella di base contenente le famiglie � registrata in una costante della classe
+CostanteFont.
+</BODY>
+</HTML>

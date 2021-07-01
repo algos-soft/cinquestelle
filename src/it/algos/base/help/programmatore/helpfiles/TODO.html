@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Untitled Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+<p><strong><font color="#FF0000" size="4" face="Arial, Helvetica, sans-serif">TODO<font
+        color="#4C4C4C"><br>
+</font></font></strong><font size="3" face="Arial, Helvetica, sans-serif"><strong><font
+        color="#333333">Se
+    si crea una tavola con campi Data e si caricano dei record dummy per vari campi
+    ma il campo data viene lasciato vuoto, quando si apre la scheda va in errore.<br>
+    Regolare i formati di esposizione delle date. Fare controllo della validit&agrave;
+    della data inserita all'uscita dal campo.<br>
+    Se non specifichi setCampoOrdine a un campo Link, va in errore quando apri la
+    scheda.<br>
+    Apro una scheda, modifico, premo il pulsante Record Precedente in scheda, mi
+    chiede se registrare, registro, va in errore.<br>
+    Evitare di chiudere e riaprire la scheda quando si registrano le modifiche tramite
+    Precedente o Successivo in scheda.<br>
+    Filtro di default specializzato per ogni tipo di campo<br>
+    - Intero (cifre, -)<br>
+    - Reale (cifre, -, punto)<br>
+    - Moneta (cifre, -, punto)<br>
+    - Data (cifre, -, /, punto)<br>
+    - Testo (dal ascii 32 a ascii 255)<br>
+    - Text area (come Testo + return (ascii 13) e tab (ascii 9))<br>
+    Campo obbligatorio<br>
+    Controllo di congruenza del campo (es. controllo di validit&agrave; sulle date
+    all'uscita, controllo positivo/negativo sui numeri)<br>
+    Intercettare il cambio di campo, e al cambio di campo passare da un metodo del
+    gestore specifico che controlla la validit&agrave; e congruenza di tutti i campi.<br>
+    Costruzione dei campi:<br>
+    - aggiungere lunghezza Lunghezza minima e massima dei campi testo<br>
+    - campo obbligatorio<br>
+    Controlli sui campi:<br>
+    1 - Controllo carattere per carattere, validit&agrave; del carattere e lunghezza
+    massima della striga (subclasse di Document, metodo InsertString, fare modelli
+    dati per i campi)<br>
+    2 - Controlli prima dell'uscita dal campo:<br>
+    a) controllo lunghezza minima<br>
+    b) controllo di congruit&agrave; generico (es. la data deve essere una data
+    valida)<br>
+    c) controllo di congruit&agrave; specifico (es. numeri positivi in un carico
+    di magazzino)<br>
+    d) controllo di congruit&agrave; relativo agli altri campi (es. data1 &gt; data2)<br>
+    3 - Modifiche ad altri campi dopo l'uscita dal campo<br>
+    (campi calcolati)<br>
+    Renderers dei campi anche in scheda<br>
+    Gestione campi obbligatori:<br>
+    All'uscita della scheda Registrando, se mancano dei campi obbligatori, avvisare
+    l'utente: &quot;I seguenti campi sono obbligatori.... (lista campi), se vuoi
+    registrare la scheda li devi compilare, altrimenti devi annullare la scheda.&quot;<br>
+    Messaggio chiudendo la scheda con record modificato:<br>
+    Attenzione: la scheda &egrave; stata modificata<br>
+    [Registra] [Non registrare] [Ritorna alla scheda]<br>
+    verificare funzionamento corretto (fa casino)</font></strong></font></p>
+
+<p><font size="3" face="Arial, Helvetica, sans-serif"><strong><font color="#333333">Campi
+    fissi (opzionali) sotto le liste Sub per inserimento semplice<br>
+</font></strong></font><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif"><strong>Classe
+    ModelloCampoEuroTesto:<br>
+    metodo memoriaVideo:<br>
+    alla riga 256<br>
+    unNumero = (BigDecimal)getMemoria()<br>
+    va in errore facendo il casting.</strong></font></p>
+
+<p><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif"><strong><br>
+    Interfaccia:<br>
+    dimensione font in lista e scheda uguale? (aiuta per le larghezze e mi sembra
+    + bello)</strong></font></p>
+
+<p><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif"><strong><br>
+    In scheda il pulsante Ripristina &egrave; meglio che chieda conferma.</strong></font></p>
+
+<p><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif"><strong><br>
+    Se modifico la larghezza di una colonna in lista poi clicco sul titolo colonna
+    per ordinare mi ripristina la larghezza originale della colonna</strong></font></p>
+
+<p><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif"><strong><br>
+    Numerazione automatica:<br>
+    Creare una variabile usaNumeratore per assegnare automaticamente un numeratore
+    ai campi numerici dei nuovi record, es. per le fatture? I numeratori devono
+    essere modificabili dall'utente (o dall'amministratore).Ordine di visualizzazione
+    dei campi in una lista: come controllarlo? </strong></font></p>
+
+<p>&nbsp;</p>
+
+<p><strong><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif">1 - In tutte le tavole
+    di
+    archivio, occorre creare un record iniziale con codice = zero.<br>
+    Questo perche' la condizione filtro della query di un'altra tavola che usa questa
+    come campo linkato, si scrive cosi': xxx.campoLink=tavolaLink.codice; quindi
+    se in xxxTavola c'e' un <br>
+    record col valore zero nel campo campoLink, SQL cerca un record in tavolaLink
+    che abbia il<br>
+    codice = a zero e se non lo trova, non fa vedere il record di xxxTavola !<br>
+    Soluzione: creare un record con codice = 0 e con gli altri campi vuoti.</font></strong></p>
+</body>
+</html>

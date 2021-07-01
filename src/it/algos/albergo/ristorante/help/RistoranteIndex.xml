@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'  ?>
+<!DOCTYPE index
+        PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Index Version 1.0//EN"
+        "http://java.sun.com/products/javahelp/index_1_0.dtd">
+
+<index version = "1.0">
+    <indexitem text = ".prof extension (profile data)" target = "prof.profile"/>
+
+    <indexitem text = "accelerators (keyboard), see 'keyboard commands'"/>
+
+    <indexitem text = "adding an existing portfolio" target = "proj.import"/>
+
+
+    <indexitem text = "using the debugger" target = "debug.overview"/>
+
+    <indexitem text = "using the Exceptions Window" target = "debug.exceptions"/>
+
+    <indexitem text = "defined" target = "debug.eval"/>
+
+    <indexitem text = "evaluating" target = "debug.eval"/>
+
+    <indexitem text = "viewing" target = "debug.threads"/>
+
+    <indexitem text = "version control">
+        <indexitem text = "check in" target = "version.version"/>
+        <indexitem text = "check in new" target = "version.version"/>
+        <indexitem text = "uncheckout" target = "version.version"/>
+    </indexitem>
+
+    <indexitem text = "viewing stack frames" target = "debug.viewthreads"/>
+
+
+    <indexitem text = "Windows menu" target = "menus.windows"/>
+
+
+</index>
+

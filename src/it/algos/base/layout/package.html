@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+Organizza graficamente un gruppo di oggetti in un pannello.
+<p>
+    Nelle API di Java, AWT e Swing, ogni <CODE>Container</CODE> delega ad un
+    <CODE>LayoutManager</CODE> la funzione di <I>organizzare</I> i propri
+    <CODE>Component</CODE> <br>
+    Questa tecnica di definire una famiglia di algoritmi e di incapsulare ognuno di
+    essi in una classe &egrave; nota come <STRONG>strategy pattern</STRONG> <br>
+    Un <CODE>Container</CODE> &egrave; semplicemente un <CODE>Component</CODE> che
+    pu&ograve; contenere altri componenti <br>
+    Ogni Container ha un <CODE>Insets</CODE> associato che stabilisce, in pixel, i
+    bordi di rispetto del contenitore (top, bottom, left, right) <br>
+    Il Layout non dovrebbe (anche se tecnicamente fattibile) posizionare oggetti in
+    queste aree <br>
+
+<p>
+    Estende le funzionalita' di <code>LayoutManager</code> <br>
+    Gli oggetti vengono organizzati <B>esclusivamente</B> secondo l'ordine in cui
+    vengono aggiunti al Container, usando il metodo unContainer.add(unComponente); <br>
+    When <CODE>add()</CODE> is called, the container adds the component to a list that it
+    mantains and call the layout manager's <CODE>addLayoutComponent()</CODE> method. <br>
+
+<p>
+    Estende le funzionalita' di <code>LayoutManager2</code> <br>
+    Ad ogni oggetto viene aggiunta una <i>costrizione</I>, cio&egrave; una
+    informazione caratteristica sul suo comportamento che <STRONG>deve</STRONG>
+    essere rispettata quando l'oggetto stesso viene ridimensionato e spostato <br>
+    Gli oggetti vengono organizzati secondo la <i>costrizione</I> di ognuno di essi,
+    usando il metodo unContainer.add(unComponente, unaCostrizione). <br>
+    Esempio di costrizione &egrave;, nel <CODE>BorderLayout</CODE>, la stringa NORD
+    per indicare che il componente <B>deve</B> essere posizionato nella parte alta
+    del Container.
+
+<p>
+    <I>Organizzare</I> i componenti di un contenitore, significa regolare
+    <STRONG>posizione</STRONG> e <STRONG>dimensioni</STRONG> di ogni componente <br>
+    La <i>costrizione</I> verr&agrave; usata nella classe <code>LayoutCampo</code>
+    per i componenti del pannello campo <br>
+
+<P>
+    Dopo aver creato un contenitore, invocare il metodo <code>.setLayout()</code>,
+    passandogli come parametro un componente che implementa l'interfaccia <code>Layout</code>
+    e che estende la classe <code>LayoutBase</code> <br>
+    I componenti da posizionare, vanno aggiunti al contenitore invocando il metodo
+    <code>.add()</code> <br>
+    Se il gruppo di componenti da posizionare eccede le dimensioni del contenitore, crea un
+    oggetto di classe <CODE>JScrollPane</CODE> e lo interpone tra i componenti ed il
+    contenitore stesso <br>
+
+<p>
+    Sottoclassi concrete della classe astratta <code>LayoutBase</code> sono:
+<ul>
+    <li><code>LayoutPagina</code> = dispone i pannelli nel pannello pagina <br>
+    <li><code>LayoutPannello</code> = dispone i campi nel pannello <br>
+    <li><code>LayoutCampo</code> = dispone i componenti nel pannello campo <br>
+    <li><code>LayoutComponente</code> = dispone gli elementi GUI primitivi nel pannello componenti
+        <br>
+</ul>
+<p>
+
+<p>
+    <img src="../../../../../it/algos/base/layout/Layout.jpg">
+
+<p>
+    <B><font size="4">Layout Managers and Component Preferred Sizes</font></B>
+
+<p>
+    Components implements two very important methods that affect their interactions
+    with layout managers:
+<ul>
+    // Component methods <br>
+    public Dimension getPreferredSize() <br>
+    public Dimension getMinimumSize() <br>
+</UL>
+As their names suggest, getPreferredSize() returns the preferred size of the
+component, and getMinimumSize() returns the minimum size a component can
+tolerate.
+<p>
+    Layout managers are tasked with calculating the preferred and minimum sizes for
+    a container by implementing the following methods from the <code>LayoutManager</code>
+    interface:
+<ul>
+    // LayoutManager methods <br>
+    Dimension preferredLayoutSize(Container) <br>
+    Dimension minimumLayoutSize(Container) <br>
+</UL>
+Such methods typically cycle through all of the container's components and
+fashion preferred and minimum sizes for the container by taking into account
+each component's preferred and minimum sizes.
+<p>
+    Layout managers, of course, are also responsible for laying out their
+    container's components. They do this by implementing the layoutContainer()
+    method:
+<ul>
+    void layoutContainer(Container) <br>
+</UL>
+While some layout managers completely ignore the preferred size of the
+components they lay out, others are infinitely receptive to each and every
+component's plea to be shaped according to their preferred size. Still other
+layout managers will pay attention to only half of a component's preferred size.
+<br>
+BorderLayout, for instance, will respect a north component's preferred height,
+but stretches the component to fill its container horizontally, thereby ignoring
+the component's preferred width.
+<p>
+    The table shows a list of the standard AWT layout managers and theirs attitudes
+    toward a component's preferred and minimum size
+<TABLE>
+    <TR>
+        <TD> BorderLayout</TD>
+        <TD> North and south components: respects height, ignores width</TD>
+    </TR>
+    <TR>
+        <TD></TD>
+        <TD> East and west components: respects width, ignores height</TD>
+    </TR>
+    <TR>
+        <TD></TD>
+        <TD> Center component: ignores both preferred width and height</TD>
+    </TR>
+    <TR>
+        <TD> FlowLayout</TD>
+        <TD> Respects preferred width and height if components has not been explicitly
+            sized
+        </TD>
+    </TR>
+    <TR>
+        <TD> CardLayout</TD>
+        <TD> Ignores preferred width and height</TD>
+    </TR>
+    <TR>
+        <TD> GridLayout</TD>
+        <TD> Ignores preferred width and height</TD>
+    </TR>
+    <TR>
+        <TD> GridBagLayout</TD>
+        <TD> Varies depending on GriBagLayoutConstraints for the component</TD>
+    </TR>
+</TABLE>
+
+<p>
+    ________________________________________________________________________________
+
+<p>
+    <font size="-1">
+        <b>Trail</b>: Creating a GUI with JFC/Swing
+        <br>
+        <b>Lesson</b>: Laying Out Components Within a Container
+    </font>
+
+<h2>
+    Creating a Custom Layout Manager
+</h2>
+<blockquote>
+
+<blockquote>
+    <hr>
+    <strong>Note:</strong>&nbsp;
+    Before you start creating a custom layout manager,
+    make sure that no existing layout manager will work.
+    In particular, layout managers such as
+    <a href=gridbag.html><code>GridBagLayout</code></a>,
+    <a href=spring.html><code>SpringLayout</code></a>, and
+    <a href=box.html><code>BoxLayout</code></a>
+    are flexible enough to work in many cases.
+    You can also find layout managers from other sources,
+    such as from the Internet.
+    Finally, you can simplify layout
+    by grouping components into containers
+    such as invisible
+    <a target="_top" href="../components/panel.html">panels</a><a target="_top"
+                                                                  href="../components/panel.html"><img
+        src="../../images/tutorialIcon.gif" width=11 height=11 border=0 align="ABSMIDDLE"
+        alt=" (in the Creating a GUI with JFC/Swing trail)"></a>.
+    <hr>
+</blockquote>
+<p>
+
+    To create a custom layout manager,
+    you must create a class that implements the
+    <a target="_blank"
+       href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/LayoutManager.html"><font
+            color="#8800bb"><code>LayoutManager</code></font></a><a target="_blank"
+                                                                    href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/LayoutManager.html"><img
+        src="../../images/apiIcon.gif" width=11 height=11 border=0 align="ABSMIDDLE"
+        alt=" (in the API reference documentation)"></a> interface.
+    You can either implement it directly,
+    or implement its subinterface,
+    <a target="_blank"
+       href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/LayoutManager2.html"><font
+            color="#8800bb"><code>LayoutManager2</code></font></a><a target="_blank"
+                                                                     href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/LayoutManager2.html"><img
+        src="../../images/apiIcon.gif" width=11 height=11 border=0 align="ABSMIDDLE"
+        alt=" (in the API reference documentation)"></a>.
+
+<p>
+
+    Every layout manager must implement at least
+    the following five methods,
+    which are required by the <code>LayoutManager</code> interface:
+
+<p>
+
+<dl>
+    <dt><strong><code>void addLayoutComponent(String, Component)</code></strong>
+    <dd>Called by the <code>Container</code> <code>add</code> methods.
+        Layout managers that don't associate strings with their components
+        generally do nothing in this method.
+
+        <p>
+
+            <dt><strong><code>void removeLayoutComponent(Component)</code></strong>
+            <dd>Called by the <code>Container</code> <code>remove</code> and
+                <code>removeAll</code> methods.
+                Many layout managers
+                do nothing in this method,
+                relying instead on querying the container for its components,
+                using the <code>Container</code> method
+                <a target="_blank"
+                   href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Container.html#getComponents()"><font
+                        color="#8800bb"><code>getComponents</code></font></a><a target="_blank"
+                                                                                href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Container.html#getComponents()"><img
+                    src="../../images/apiIcon.gif" width=11 height=11 border=0 align="ABSMIDDLE"
+                    alt=" (in the API reference documentation)"></a>.
+
+        <p>
+
+            <dt><strong><code>Dimension preferredLayoutSize(Container)</code></strong>
+            <dd>Called by the <code>Container</code> <code>getPreferredSize</code> method,
+                which is itself called under a variety of circumstances.
+                This method should calculate and return the ideal size of the container,
+                assuming that the components it contains will be at or above
+                their preferred sizes.
+                This method must take into account the container's internal borders,
+                which are returned by the
+                <a target="_blank"
+                   href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Container.html#getInsets()"><font
+                        color="#8800bb"><code>getInsets</code></font></a><a target="_blank"
+                                                                            href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Container.html#getInsets()"><img
+                    src="../../images/apiIcon.gif" width=11 height=11 border=0 align="ABSMIDDLE"
+                    alt=" (in the API reference documentation)"></a> method.
+
+        <p>
+
+            <dt><strong><code>Dimension minimumLayoutSize(Container)</code></strong>
+            <dd>Called by the <code>Container</code> <code>getMinimumSize</code> method,
+                which is itself called under a variety of circumstances.
+                This method should calculate and return the minimum size of the container,
+                assuming that the components it contains
+                will be at or above their minimum sizes.
+                This method must take into account the container's internal borders,
+                which are returned by the
+                <code>getInsets</code> method.
+
+        <p>
+
+            <dt><strong><code>void layoutContainer(Container)</code></strong>
+            <dd>Called when the container is first displayed,
+                and each time its size changes.
+                A layout manager's <code>layoutContainer</code> method
+                doesn't actually draw components.
+                It simply invokes each component's
+                <code>setSize</code>,
+                <code>setLocation</code>,
+                and
+                <code>setBounds</code>
+                methods to set the component's size and position.
+
+        <p>
+            This method must take into account the container's internal borders,
+            which are returned by the
+            <code>getInsets</code> method.
+            If appropriate,
+            it should also take the container's orientation
+            (returned by the
+            <a target="_blank"
+               href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Component.html#getComponentOrientation()"><font
+                    color="#8800bb"><code>getComponentOrientation</code></font></a><a
+                target="_blank"
+                href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Component.html#getComponentOrientation()"><img
+                src="../../images/apiIcon.gif" width=11 height=11 border=0 align="ABSMIDDLE"
+                alt=" (in the API reference documentation)"></a> method)
+            into account.
+            You can't assume that the <code>preferredLayoutSize</code>
+            or <code>minimumLayoutSize</code> method will be called
+            before <code>layoutContainer</code> is called.
+
+</dl>
+
+<p>
+
+    Besides implementing the preceding five methods,
+    layout managers generally implement at least one public constructor
+    and the
+    <code>toString</code>
+    method.
+
+<p>
+
+    If you wish to support component
+    constraints, maximum sizes, or alignment,
+    then your layout manager should implement the
+    <code>LayoutManager2</code> interface.
+    That interface adds five methods to those
+    required by <code>LayoutManager</code>:
+
+<ul>
+    <li><code>addLayoutComponent(Component, Object)</code>
+    <li><code>getLayoutAlignmentX(Container)</code>
+    <li><code>getLayoutAlignmentY(Container)</code>
+    <li><code>invalidateLayout(Container)</code>
+    <li><code>maximumLayoutSize(Container)</code>
+</ul>
+
+
+For more information about these methods,
+see the
+<a target="_blank" href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/LayoutManager2.html"><font
+        color="#8800bb"><code>LayoutManager2</code> API documentation</font></a><a target="_blank"
+                                                                                   href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/LayoutManager2.html"><img
+        src="../../images/apiIcon.gif" width=11 height=11 border=0 align="ABSMIDDLE"
+        alt=" (in the API reference documentation)"></a>.
+
+<p>
+    When implementing a layout manager,
+    you might want to use
+    <a target="_blank"
+       href="http://java.sun.com/j2se/1.4.2/docs/api/javax/swing/SizeRequirements.html"><font
+            color="#8800bb"><code>SizeRequirements</code></font></a><a target="_blank"
+                                                                       href="http://java.sun.com/j2se/1.4.2/docs/api/javax/swing/SizeRequirements.html"><img
+        src="../../images/apiIcon.gif" width=11 height=11 border=0 align="ABSMIDDLE"
+        alt=" (in the API reference documentation)"></a> objects to help you determine
+    the size and position of components.
+    See the source code for <code>BoxLayout</code>
+    for an example of using <code>SizeRequirements</code>.
+
+
+</BODY>
+</HTML>

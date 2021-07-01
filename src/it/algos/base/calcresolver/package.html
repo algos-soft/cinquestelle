@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <meta http-equiv="content-type"
+          content="text/html; charset=ISO-8859-1">
+    <title></title>
+</head>
+<body>
+<h1>Package calcresolver</h1>
+<br>
+Il package si occupa del calcolo automatico dei campi calcolati a
+livello di database.<br>
+Il package e' composto dalle classi: AlberoCalcolo e CalcResolver.<br>
+
+Ogni Modello dati mantiene una istanza di AlberoCalcolo che rappresenta
+la gerarchia di calcolo dei propri campi fisici calcolati.<br>
+L'albero viene costruito dal Modello in fase di inizializzazione, dopo
+aver inizializzato i campi, basandosi sugli elenchi dei campi osservati
+dai campi calcolati<br>
+
+Prima di ogni Query di inserimento o modifica, il trigger del Modello
+crea una istanza di CalcResolver, gli passa l'elenco dei CampiValore che
+devono essere registrati, il tipo di operazione (inserimento o modifica) e
+l'eventuale codice del record.<br>.
+
+Utilizzando queste informazioni e la struttura di calcolo rappresentata
+dall'albero, il CalcResolver elabora la lista ricevuta e si occupa di
+aggiungere tutti i campi calcolati dipendenti dai campi ricevuti
+e i tutti campi necessari ai calcoli stessi dove non forniti.<br>
+
+<h2>Come funziona il Resolver</h2>
+
+1) Rimuove tutti gli eventuali i campi calcolati dalla lista in ingresso;
+i valori dei campi calcolati sono responsabilità esclusiva del Resolver e
+non possono essere inseriti nella query dall'utente;<br>
+
+2) Analizza i campi arrivati e crea una lista di campi da calcolare che
+sono dipendenti dai campi arrivati;<br>
+
+3) Si procura una lista di tutti i campi necessari al calcolo con i relativi
+valori; i valori forniti nella lista in ingresso hanno la precedenza, per i
+valori non forniti si distinguono i due casi:<br>
+- se si tratta di nuovo record, usa i valori di default;<br>
+- se si tratta di modifica, recupera i valori esistenti dal database;<br>
+
+4) Calcola i valori dei campi calcolati rispettando le dipendenze dell'albero
+(Postorder) per garantire la corretta sequenza dei calcoli;<br>
+
+5) Crea la lista completa dei campi da registrare.
+L'insieme è sempre composto da:
+- tutti i campi arrivati nella lista in ingresso;
+- tutti i campi calcolati da essi dipendenti;
+Se si tratta di nuovo record, a questo insieme si aggiungono anche tutti
+i campi utilizzati per il calcolo.
+
+</body>
+</html>

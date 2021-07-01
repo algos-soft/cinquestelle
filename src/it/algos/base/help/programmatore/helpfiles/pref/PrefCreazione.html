@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Creazione</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/help.css"/>
+</head>
+
+<body>
+<h2>Creazione delle preferenze</h2>
+
+<p class="paragrafo"><b>aprile 2007</b></p>
+
+<p> La classe principale di preferenze Pref, contiene le enumeration del progetto di base e viene
+    creata
+    automaticamente dalla classe Progetto</p>
+
+<p> Per utilizzare preferenze specifiche di un progetto, occorre scrivere una classe XxxxPref,
+    sotoclasse di
+    Pref </p>
+
+<p> Quando si crea una sottoclasse di Pref, occorre copiare una enumeration completa da Pref e
+    modificarla
+    come necessario</p>
+
+<p> Nel metodo .inizia() della classe XxxxModulo, occorre creare un'istanza della classe XxxxPref.
+    Non occorre conservare un riferimento all'oggetto cretao, perché tutta la funzionalità delle
+    preferenze viene gestita a livello statico
+</p>
+
+<p> Nella sottoclasse XxxxPref, si possono implementare n enumeration.</p>
+
+<p> Nel metodo .inizia() della sottoclasse XxxxPref, occorre invocare super.addGruppo(Yyy.class) per
+    ogni enumeration creata.</p>
+
+<p> Sempre nel metodo .inizia() della sottoclasse XxxxPref, occorre invocare Pref.carica()
+    <b>dopo</b> aver aggiunto tutte le enumeration</p>
+
+<p> Il metodo Pref.carica() legge le eventuali preferenze non standard registrate sul file locale di
+    testo (o su altro supporto permanente di memoria) </p>
+
+</body>
+</html>
+

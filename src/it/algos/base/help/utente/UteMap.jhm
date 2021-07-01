@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE map
+        PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN"
+        "">
+
+<map version = "1.0">
+    <mapID target = "openbook" url = "../icone/openbook.gif"/>
+    <mapID target = "chapter" url = "../icone/chapTopic.gif"/>
+    <mapID target = "topic" url = "icone/topic.gif"/>
+
+    <mapID target = "top" url = "helpfiles/AlgosPrefazione.html"/>
+    <mapID target = "datiiniziali" url = "helpfiles/DatiIniziali.html"/>
+    <mapID target = "installazione" url = "helpfiles/Installazione.html"/>
+</map>

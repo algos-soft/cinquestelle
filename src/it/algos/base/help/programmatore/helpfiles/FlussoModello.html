@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Untitled Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+<p><strong><font color="#FF0000" size="3" face="Arial, Helvetica, sans-serif">Flusso
+    modello</font></strong></p>
+
+<p><strong><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif"><br>
+    &#8226;xxxModello. avviaModello()<br>
+    ----ModelloaAlgos.avviaModello()<br>
+    ----|----Modello.avviaModello()<br>
+    ----|----|----xxxModello.creaCampiRecord()<br>
+    ----|----|----|----ModelloaAlgos. creaCampiRecord()<br>
+    ----|----|----|----|----crea gli 8 campi standard e li aggiunge al set del modello<br>
+    ----|----|----|----crea gli ulteriori campi del progetto e li aggiunge al set
+    del modello<br>
+    ----|----|----Modello.creaTavolaArchivio()<br>
+    ----|----|----|----DB.creaArchivio()<br>
+    ----|----|----|----crea record zero nella tavola di archivi<br>
+    ----|----|----Modello.regolaVisibilitaCampi()<br>
+    ----|----|----|----spazzola tutti i campi del set del modello per regolare la
+    visibilita<br>
+    ----ModelloAlgos.popolaTavolaArchivio()<br>
+    ----|----ciclo per ogni record da costruire preso dalle risorse<br>
+    ----|----xxxNuovoRecord()<br>
+    ----|----|----ModelloAlgos.nuovoRecord()<br>
+    ----|----|----|----Modello.nuovoRecord()<br>
+    ----|----|----|----|----DB.nuovoRecord()<br>
+    ----|----|----|----|----valore nullo di default per tutti i campi del xxxModello<br>
+    ----|----|----|----regolazione valori significativi dei 8 campi standard<br>
+    ----|----|----regolazione valori significativi dei campi del progetto </font></strong></p>
+
+<p>&nbsp;</p>
+
+<p><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif"><strong>Chiamata
+    standard che esegue sempre per ogni modello (quindi per ogni tavola)<br>
+    &#8226; Modello.avviaModello() chiama Modello.creaTavolaArchivio()<br>
+    controlla che ci sia la tavola, se no la crea vuota</strong></font></p>
+
+<p><font color="#4C4C4C" size="3" face="Arial, Helvetica, sans-serif"><strong><br>
+    Chiamata eseguita solo se il progetto decide di eseguirla<br>
+    &#8226; xxxModello.avviaModello() chiama ModelloAlgos.popolaTavolaArchivio()<br>
+    popola la tavola coi dati delle risorse </strong></font></p>
+</body>
+</html>

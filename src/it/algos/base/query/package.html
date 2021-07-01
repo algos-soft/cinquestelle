@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+
+Gestione delle relazioni ambigue:<p>
+    Esistono due tipi di ambiguita' per andare dalla tavola A
+    alla tavola B:
+
+<p>
+<li>Tipo 1: piu' di un campo della tavola A puntano alla tavola B</li>
+(es. linkpiatto e linkcontorno in Ristorante.righemenupiatto,
+che puntano entrambi alla tavola Piatto).<p>
+<li>Tipo 2: esistono piu' percorsi possibili tra le due tavole.</li>
+es CONTO -> CLIENTE -> FATTURA -> CONTO<p>
+    Le relazioni ambigue vengono gestite automaticamete dalla query
+    nel modo seguente:
+
+<p>
+<li>Ambiguit� di tipo 1:</li>
+Uno solo dei campi della tavola A viene contrassegnato
+nel modello come relazione preferita; la query usa tale
+campo per la relazione<p>
+
+<li>Ambiguita' di tipo 2 (in ordine di priorita'):</li>
+Il modulo puo' contenere un elenco di passaggi obbligati
+che serve per risolvere le relazioni ambigue per tutte le
+query del modulo.<p>
+<li>Se sono stati definiti dei passaggi obbligati nel modulo, la
+    query li usa per risolvere l'ambiguit�.
+</li>
+<li>Se dopo di questo resta un'ambiguita', se un percorso e' piu'
+    breve di tutti gli altri, viene usato il percorso piu' breve
+</li>
+<p>
+    In aggiunta a questi automatismi, e' sempre possibile aggiungere
+    dei passaggi obbligati a una query specifica per costringerla
+    a utilizzare un determinato percorso.
+
+<p>
+</BODY>
+</HTML>

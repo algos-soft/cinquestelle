@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Uso delle ricerche</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../css/help.css"/>
+</head>
+
+<body>
+<p class="titolo">Package Ricerca</p>
+
+Il package Ricerca gestisce le funzionalita' di ricerca per un modulo.<br>
+Il package Ricerca e' composto da: interfaccia Ricerca, classe RicercaBase,
+classe RicercaDefault, classe CampoRicerca.<br>
+
+<p class=sottotitolo>Interfaccia Ricerca</p>
+Definisce i metodi che ogni implementazione deve fornire.<br>
+Definisce la Enum delle opzioni di ricerca.<br>
+
+<p class=sottotitolo>Classe RicercaBase</p>
+Gestisce il dialogo di ricerca contenente i diversi campi di ricerca<br>
+Contiene un campo di opzioni di ricerca che determina la combinazione della
+ricerca con la eventuale lista gia' visualizzata nel Navigatore (Ricerca standard,
+Aggiungi alla lista, Rimuovi dalla lista, Cerca nella lista).<br>
+Il dialogo di ricerca restituisce un filtro corrispondente alle condizioni di
+ricerca impostate.<br>
+
+<p class=sottotitolo>Classe RicercaDefault</p>
+E' una ricerca che usa automaticamente tutti i campi visibili nella lista
+del navigatore corrente del Modulo.<br>
+
+<p class=sottotitolo>Classe CampoRicerca</p>
+E' il singolo campo di ricerca, e' composto da:
+- un popup di unione con la ricerca precedente<br>
+- un popup per la selezione dell'operatore (maggiore, minore, uguale, contiene ecc...)
+(non presente quando si usa il range di ricerca o se il campo e' booleano)<br>
+- un pannello contenente uno o due campi a seconda del flag di uso del
+range di ricerca.<br>
+- due bottoni per aggiungere o rimuovere condizioni di ricerca<br>
+I campi numerici di default usano il range di ricerca.<br>
+I campi testo e data di default usano l'operatore CONTIENE<br>
+I campi numerici e data di default usano l'operatore UGUALE<br>
+
+<p class=sottotitolo>Uso della ricerca</p>
+- Se non si specifica nulla di particolare, ogni Navigatore usa una RicercaDefault
+contenente tutti i campi visibili nella lista del Navigatore.<br>
+- Per specificare quali campi includere nella ricerca, occorre attivare il flag
+setRicercabile(true) nel modello quando si costruisce il campo.<br>
+Se nel modello e' stato definito almeno un campo come Ricercabile, il Navigatore
+usa i campi ricercabili anziche' la ricerca di default.<br>
+Quando il flag setRicercabile() e' attivato e' possibile usare sul campo anche
+i flag setUsaRangeRicerca() per controllare la ricerca su range e
+setOperatoreRicercaDefault() per controllare l'operatore di ricerca da presentare
+inizialmente nel dialogo di ricerca.<br>
+- Per usare un dialogo di ricerca specifico, andare nel metodo Inizializza del
+Navigatore, creare una nuova ricerca (oppure, creare una classe specifica che estende
+RicercaBase), aggiungervi i campi e assegnare la ricerca al Navigatore con il
+metodo setRicerca(RicercaBase miaRicerca).<br>
+
+<p class=sottotitolo>Ricerche su campi Timestamp</p>
+Per i campi di tipo Timestamp, di default l'utente deve inserire nel campo di ricerca
+la stringa formattata secondo le regole del Timestamp (AAAA-MM-GG HH:MM:SS.millis).<br>
+E' possibile effettuare la ricerca solo sulla porzione Data del campo Timestamp.<br>
+Per attivare questa opzione, Usare il comando setRicercaSoloPorzioneData(true) in CampoDati.<br>
+Per i campi fissi dataCreazione e dataModifica, questo comportamento è attivato di default.<br>
+
+<p class=sottotitolo>Esempio di creazione di una nuova ricerca</p>
+
+<code>
+    Ricerca unaRicerca = new RicercaBase(this);
+    unaRicerca.addCampoRicerca(CAMPO_DESCRIZIONE);
+    unaRicerca.addCampoRicerca(CAMPO_NUMERO);
+    unaRicerca.addCampoRicerca(CAMPO_IMPORTO,Filtro.Op.MAGGIORE_UGUALE); // operatore non standard
+    unaRicerca.addCampoRicerca(CAMPO_DATA, true); // usa range
+    unaRicerca.addCampoRicerca(CAMPO_DATA_NASCITA);
+    unaRicerca.addCampoRicerca(CAMPO_CHECK);
+    unaRicerca.addCampoRicerca(CAMPO_COLORI);
+
+    // ulteriori regolazioni fini del campo ricerca
+    CampoRicerca cr;
+    cr = unaRicerca.addCampoRicerca(CAMPO_NOME); //restituisce l'oggetto
+    cr.setUsaRange(true);
+    cr.setEtichettia("nome da nubile")
+
+    // assegnazione della ricerca al Navigatore
+    this.getNavigatoreDefault().setRicerca(unaRicerca);
+</code>
+
+E' possibile aggiungere alla ricerca anche campi di altri moduli, occorre pero'
+che i moduli siano opportunamente linkati.<br>
+E' possibile aggiungere alla ricerca lo stesso campo anche piu' di una volta.<br>
+
+</body>
+</html>

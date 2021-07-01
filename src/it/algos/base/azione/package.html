@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+Comportamento del programma in seguito ad un <strong>evento</strong>.
+<p>
+    Questo package contiene:
+<ul>
+    <li><i>interfaccia</i> <code>Azione</code></li>
+    <li><i>classe statica </i> <code>AzioneFactory</code></li>
+    <li><i>classe astratta</i> <code>AzioneBase</code></li>
+    <li><i>classe astratta</i> <code>AzAdapter...</code></li>
+    <li><i>classe concreta</i> <code>Az...</code></li>
+    <li><i>classe concreta</i> <code>AzAvviaModulo</code></li>
+</ul>
+Le azioni determinano il comportamento del programma <br>
+Ogni oggetto ha, o pu&ograve; avere, dei <CODE>Listener</CODE> (ascoltatori)
+associati che ascoltano gli eventi che l'oggetto pu&ograve; generare <br>
+Ogni evento raggiunge tutti i <CODE>Listener</CODE>, ma viene <i>processato</I>
+solo da quelli <i>abilitati</I> per <I>ascoltare</I> quell'evento specifico <br>
+
+<p>
+    Le azioni sono estensioni della classe <code>Action</code> e rappresentano gli
+    <strong>eventi</strong> generati dal sistema quando si interagisce sulla GUI <br>
+    Le azioni tipicamente, oltre a mantenere alcuni attributi, invocano un metodo
+    specifico del <code>Gestore</code> quando viene generato l'evento <br>
+    Le azioni quindi non eseguono direttamente codice significativo (business logic), ma
+    servono come collegamento non procedurale tra i Listener associati agli oggetti e la
+    funzione che si vuole far eseguire a quegli oggetti <br>
+    Il riferimento al Gestore specifico viene regolato nel metodo .avvia dopo che il
+    portale ha clonato l'azione dalla collezione base mantenuta nel Progetto <br>
+
+<p>
+    Sono state create delle classi <CODE>AzAdapter...</CODE> per poter usare le
+    interfacce dei singoli <CODE>Listener</CODE>, senza dover implementare tutti i
+    metodi di ogni interfaccia <br>
+    Ogni azione concreta utilizza un'interfaccia di tipo <CODE>Listener</CODE> ed
+    implementa uno o pi&ugrave; metodi del'interfaccia stessa <br>
+    Il metodo rinvia al corrispondente metodo delegato della classe <CODE>Gestore</CODE>
+
+<p>
+    Ogni azione ha un codice chiave per poter esser utilizzata dal programma <br>
+    Alcune mantengono inoltre un testo da usare come Tooltip ed un testo da usare nell' Help <br>
+    le azioni sono divise in cartelle a seconda della loro funzionalit&agrave; <br>
+    Ad ogni oggetto possono esser associate pi&ugrave; azioni <br>
+
+<p>
+    Le azioni vengono create all'avvio del programma nel ciclo <i>Costruttore.inizia</i> <br>
+    I portali mantengono una lista di azioni che usano e le <i>clonano</i> dalla collezione
+    base del Progetto (che non viene mai usata direttamente) <br>
+    L'azione <code>AzAvviaModulo</code>, che deve far partire un modulo dal comando del Menu,
+    ha alcune caratteristiche diverse dalla altre <br>
+    L'interfaccia mantiene le costanti di tutte le azioni,da usare nelle varie parti del
+    programma come <strong>chiave</strong> per individuare la singola azione <br>
+    Le classi astratte AzAdapter... mantengono tutti i metodi del Listener specifico che
+    viene implementato <br>
+    La classe statica factory implementa il metodo <i>.crea</i> per la creazione iniziale
+    di tutte le azioni <br>
+</BODY>
+</HTML>

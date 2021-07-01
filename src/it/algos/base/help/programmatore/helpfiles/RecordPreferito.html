@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Record preferito</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../css/help.css"/>
+</head>
+
+<body>
+<p class="titolo">Gestione del record preferito</p>
+La gestione del record preferito serve per identificare uno e un solo record
+preferito tra quelli gestiti da un Navigatore. <p>
+    Nell'ambito dei record isolati dal filtro base di un Navigatore, uno di
+    questi può essere identificato come Preferito.
+
+<p>
+    Poiché un Navigatore può lavorare su una selezione di record (es. moduli righe),
+    in una tavola possono esistere più record preferiti. Nell'ambito della selezione
+    gestita dal Navigatore, il record preferito può essere uno solo.
+    Perché i Navigatori di un Modulo possano utilizzare la gestione del record
+    preferito, occorre attivarla a livello del Modello.
+
+<p>
+
+<p class=sottotitolo>Attivazione nel Modello</p>
+Nel metodo creaCampi(), aggiungere il comando:<p>
+
+<p class=paragrafo>this.setUsaCampoPreferito(true)</p>
+Questo comando determina:<p>
+    - la creazione di un campo booleano "pref" sul database.
+
+<p>
+    - l'attivazione della gestione del record Preferito nel Navigatore di
+    default del Modulo.
+
+<p>
+
+<p class=sottotitolo>Recupero del codice del record preferito</p>
+Nel modello, chiamare il metogo getRecordPreferito()<p>
+
+
+<p class=sottotitolo>Attivazione in un Navigatore</p>
+Normalmente solo il Navigatore di default viene automaticamente attivato
+per la gestione del record Preferito.<p>
+    Per attivare la gestione del record preferito su un altro navigatore:
+
+<p>
+    nav.setUsaPreferito(true)
+
+<p>
+    (Il modello deve avere la gestione del campo preferito attivata)
+
+<p>
+
+<p class=sottotitolo>Comportamento di un Navigatore con gestione attivata</p>
+- mostra un simbolo nella lista in corrispondenza del record preferito;<p>
+    - include un bottone nella lista per impostare il record preferito;
+
+<p>
+    - quando si crea il primo record lo imposta automaticamente come preferito;
+
+<p>
+    - se si cancella il record preferito imposta automaticamente il primo
+    record della lista come preferito (ordinamento basato sul campo Ordine).
+
+<p>
+</body>
+</html>

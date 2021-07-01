@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE map
+        PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN"
+        "">
+
+<map version = "1.0">
+    <!--<mapID target="topprogrammatore" url="helpfiles/Programmatore.html" />-->
+    <!--<mapID target="accesso" url="helpfiles/Accesso.html" />-->
+    <!--<mapID target="applicazione" url="helpfiles/Applicazione.html" />-->
+    <mapID target = "azioni" url = "helpfiles/Azioni.html"/>
+    <!--<mapID target="campi" url="helpfiles/Campi.html" />-->
+    <!--<mapID target="cartella" url="helpfiles/Cartella.html" />-->
+    <!--<mapID target="dialoghi" url="helpfiles/Dialoghi.html" />-->
+    <!--<mapID target="distribuzione" url="helpfiles/Distribuzione.html" />-->
+    <!--<mapID target="finestrelista" url="helpfiles/ArrayFinestreLista.html" />-->
+    <!--<mapID target="finestrescheda" url="helpfiles/ArrayFinestreScheda.html" />-->
+    <!--<mapID target="flussomodello" url="helpfiles/FlussoModello.html" />-->
+    <!--<mapID target="fatto" url="helpfiles/FATTO.html" />-->
+    <!--<mapID target="gestione" url="helpfiles/Gestione.html" />-->
+    <!--<mapID target="gestore" url="helpfiles/Gestore.html" />-->
+    <!--<mapID target="installazione" url="helpfiles/Installazione.html" />-->
+    <!--<mapID target="lista" url="helpfiles/Lista.html" />-->
+    <!--<mapID target="menu" url="helpfiles/Menu.html" />-->
+    <!--<mapID target="modello" url="helpfiles/Modello.html" />-->
+    <!--<mapID target="modulo" url="helpfiles/Modulo.html" />-->
+    <!--<mapID target="partenza" url="helpfiles/Partenza.html" />-->
+    <mapID target = "creaPref" url = "helpfiles/pref/PrefCreazione.html"/>
+    <mapID target = "genPref" url = "helpfiles/pref/PrefGen.html"/>
+    <mapID target = "hardPref" url = "helpfiles/pref/PrefHard.html"/>
+    <mapID target = "strutturaPref" url = "helpfiles/pref/PrefStruttura.html"/>
+    <mapID target = "usoPref" url = "helpfiles/pref/PrefUso.html"/>
+    <mapID target = "progetti" url = "helpfiles/Progetti.html"/>
+    <mapID target = "orgPrg" url = "helpfiles/ProgettiOrg.html"/>
+    <mapID target = "srcPrg" url = "helpfiles/ProgettiSrc.html"/>
+    <mapID target = "outPrg" url = "helpfiles/ProgettiOutput.html"/>
+    <mapID target = "creaPrg" url = "helpfiles/ProgettiCreazione.html"/>
+    <mapID target = "elencoPrg" url = "helpfiles/ProgettiElenco.html"/>
+    <mapID target = "css" url = "helpfiles/Css.html"/>
+    <mapID target = "cvs" url = "helpfiles/Cvs.html"/>
+    <mapID target = "jar" url = "helpfiles/Jar.html"/>
+    <!--<mapID target="scheda" url="helpfiles/Scheda.html" />-->
+    <!--<mapID target="strutturamodulo" url="helpfiles/StrutturaModulo.html" />-->
+    <!--<mapID target="tavolaarchivio" url="helpfiles/tavolaArchivio.html" />-->
+    <!--<mapID target="todo" url="helpfiles/TODO.html" />-->
+    <!--<mapID target="thread" url="helpfiles/Thread.html" />-->
+    <!--<mapID target="transazioni" url="helpfiles/Transazioni.html" />-->
+    <!--<mapID target="uscita" url="helpfiles/Uscita.html" />-->
+    <!--<mapID target="uscitascheda" url="helpfiles/UscitaScheda.html" />-->
+    <mapID target = "update" url = "helpfiles/Update.html"/>
+    <mapID target = "viste" url = "helpfiles/Viste.html"/>
+    <mapID target = "transazioni" url = "helpfiles/Transazioni.html"/>
+    <mapID target = "recordPreferito" url = "helpfiles/RecordPreferito.html"/>
+</map>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Uso delle transazioni</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../css/help.css"/>
+</head>
+
+<body>
+<p class="titolo">Uso delle transazioni</p>
+
+L'uso delle transazioni permette di isolare tutte le operazioni
+effettuate da un Navigatore sul database nell'ambito di un ciclo
+di editing del record (dall'apertura della scheda fino alla sua chiusura).
+
+L'uso delle transazioni è specifico di un Navigatore: ogni Navigatore
+può decidere di utilizzarle o meno.
+
+L'attivazione delle transazioni viene eseguita in due fasi:
+
+Fase 1 - attivazione a livello del Modulo.
+Nel metodo Inizia() del Modulo, attivare il flag con il comando
+
+<code>this.setUsaTransazioni(true)</code>;
+
+Questo flag istruisce il ModelloAlgos ad utilizzare l'apposito
+inizializzatore <code>InitContatore</code> per il campo chiave.
+In base alla presenza di questo inizializzatore, al termine della
+creazione dei moduli, il Progetto rileva che uno (o più) moduli
+necessitano del modulo Contatori e lo crea automaticamente.
+
+Dopo l'attivazione a livello di Modulo, è possibile attivare
+singolarmente gli specifici Navigatori.
+
+Fase 2 - attivazione a livello di Navigatore.
+Nel metodo inizia del Navigatore, attivare il flag con il comando
+
+<code>this.setUsaTransazioni(true)</code>
+
+Questo flag determina la creazione di una connessione dedicata
+mantenuta dal Navigatore, tramite la quale effettua tutte le proprie
+operazioni (normalmente, un Navigatore utilizzerebe la connessione
+del Modulo).
+Gli eventuali campi Navigatore interni ereditano la connessione
+del Navigatore esterno e operano quindi all'interno della transazione.
+La creazione di record tramite la funzione Nuovo Record dei campi
+combo è intenzionalmente tenuta fuori dalla transazione.
+
+Query specifiche in un Navigatore con transazione attiva:
+
+Se si effettuano delle query specifiche nell'ambito di un ciclo
+del record di un Navigatore con transazioni attivate (normalmente può
+capitare nella scheda), è possibile restare all'interno della transazione
+attiva utilizzando i metodi query() del Navigatore anziché quelli del
+Modulo.
+In tal modo il Navigatore dirotta le query alla propria connessione e
+consente di mantenere l'isolamento fino al termine della transazione.
+Se al contrario si vogliono eseguire le query al di fuori della transazione,
+basta utilizzare i metodi query() del modulo.
+
+
+</body>
+</html>

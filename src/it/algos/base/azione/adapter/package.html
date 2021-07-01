@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+Adattatori astratti per le Azioni.
+<p>
+    Questo package contiene le classi astratte degli adattatori per ogni interfaccia di
+    eventi implementata <br>
+    L'inserimento di questo <i>layer</i> intermedio nella catena di ereditariet&agrave;
+    di una classe di tipo Azione, deriva dalla necessit&agrave di <i>specializzare</i>
+    le interfaccie di ogni singolo tipo di evento <br>
+    Quando si aggiunge un'azione come <code>Listener</code> ad un oggetto della GUI, questo
+    utilizza dei metodi <i>add...</i> diversi per ogni tipologia di eventi gestita. Se in questa
+    fase si
+    utilizzasse un'interfaccia comprensiva di tuttti i possibili tipi di eventi, l'oggetto
+    accetterebbe l'inserimento senza dare errore, ma non gestirebbe l'evento in runtime <br>
+    Avere un'interfaccia specifica per la tipologia di eventi gestita dall'oggetto GUI,
+    permette di associare all'oggetto stesso <strong>solo</strong> gli eventi che questo
+    &egrave; in grado di gestire <br>
+
+<p>
+    La classe <code>AzAdapterAction</code> &egrave; inserita nel package solo per
+    omogeneit&agrave; con gli altri Adapter. In realt&agrave; il metodo <i>actionPerformed</i>
+    viene necessariamente inplementato nella classe <code>AzioneBase</code> che estende,
+    tramite <code>AbstractAction</code> l'interfaccia <i>Action</i> <br>
+</BODY>
+</HTML>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <meta http-equiv="content-type"
+          content="text/html; charset=ISO-8859-1">
+    <title></title>
+</head>
+<body>
+<h1>Package Semaforo</h1>
+<br>
+Il package Semaforo implementa la gestione dei Semafori a livello globale.<br>
+I Semafori sono un meccanismo che serve a garantire l'utilizzo esclusivo
+di una risorsa.<br>
+Il package Semaforo e' composto dal modulo Semaforo, il quale viene
+creato automaticamente da ogni Progetto come modulo fisso.<br>
+
+<h2>Implementazione generale</h2>
+Il modulo Semaforo mantiene una tavola Semafori sul database.<br>
+Ogni Semaforo e' rappresentato da un record su questa tavola, ed
+e' identificato da una chiave (Stringa).<br>
+In ogni momento è possibile tentare di accendere un Semaforo tramite il comando
+Progetto.setSemaforo(String chiave).<br>
+Se il semaforo e' gia' stato acceso in precedenza, il metodo setSemaforo(...)
+ritorna false e l'accensione del semaforo fallisce. In questo caso bisognera'
+rinunciare ad impegnare la risorsa controllata dal semaforo.<br>
+Se il semaforo non e' acceso, il metodo setSemaforo(...) ritorna true e il
+semaforo viene acceso. In questo caso si potra' procedere ad impegnare la
+risorsa e nessun'altro potra' accendere il semaforo (e impegnare la risorsa) fino a
+quando questo non verra' spento.<br>
+Al termine dell'operazione, ricordare di spegnere il semaforo con il comando
+clearSemaforo(String chiave).<br>
+
+<h2>Visibilita' dei Semafori</h2>
+Essendo implementati su una tavola del database, i semafori sono visibili
+a tutti i processi e tutte le postazioni collegate. L'accesso alla tavola
+viene effettuato tramite la connessione del modulo Semaforo, pertanto i
+semafori sono visibili da tutti allo stesso modo anche dall'interno di
+eventuali transazioni.
+
+<h2>Tempi di attesa</h2>
+Quando si tenta di accendere un semaforo gia' acceso, il metodo setSemaforo(...)
+attende un tempo di default (5 secondi) che il semaforo venga liberato prima di
+rinunciare all'accensione e ritornare false.<br>
+
+<h2>Meccanismo anti-blocco (time to live)</h2>
+Se un processo accendesse un semaforo e poi dimenticasse di spegnerlo per qualsiasi
+motivo, i successivi tentativi di accensione fallirebbero sempre perche'
+troverebbero il semaforo sempre acceso.<br>
+Per scongiurare questa eventualita', quando un semaforo viene acceso gli vengono
+assegnati un timestamp di accensione e un tempo massimo di vita (time to live o ttl)
+che permettono di identificare un semaforo "scaduto".<br>
+Quando si tenta di accendere un semaforo, questi valori vengono controllati e se
+il semaforo e' "scaduto" esso viene liberato automaticamente.<br>
+Il time to live di default e' di 5 minuti, e' possibile accendere un semaforo
+con un time to live diverso usando il metodo setSemaforo(String chiave, int ttl).<br>
+Questo meccanismo implica che l'accesso alla risorsa controllata debba durare meno
+del ttl del semaforo. Se si prevede di impegnare la risorsa per lungo tempo,
+accendere un semaforo con ttl adeguato.<br>
+Inoltre, al momento, il timestamp di accensione viene regolato sulla base
+del clock locale, per cui fare attenzione alla sincronizzazione dei clock
+delle workstation. In futuro il timestamp dovra' essere letto dal server di
+database o da qualche altro time server.<br>
+
+<h2>Utilizzo dei Semafori</h2>
+I principali metodi per l'utilizzo dei semafori sono riportati in Progetto.<br>
+
+Per accendere un semaforo:
+
+<code>
+    Progetto.setSemaforo(String chiave);
+</code>
+
+Per utilizzare un time to live diverso dal default (5 minuti):
+
+<code>
+    Progetto.setSemaforo(String chiave, int ttl);
+</code>
+
+Per visualizzare un messaggio in caso di fallimento:
+
+<code>
+    Progetto.setSemaforo(String chiave, true);
+</code>
+
+
+Per spegnere un semaforo:
+
+<code>
+    Progetto.clearSemaforo(String chiave);
+</code>
+
+
+Esempio:
+<code>
+    // accende un semaforo denominato "miosemaforo",
+    // utilizza la risorsa e alla fine spegne il semaforo
+    riuscito = Progetto.setSemaforo("miosemaforo");
+    if (riuscito){
+
+    // utilizza la risorsa
+    ... code ...
+
+    // alla fine spegne il semaforo
+    Progetto.clearSemaforo("miosemaforo");
+
+    }
+</code>
+
+
+</body>
+</html>

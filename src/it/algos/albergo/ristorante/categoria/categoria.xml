@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name = "categoria" default = "all">
+
+    <!-- proprieta' globali di questo build -->
+    <property name = "basedir" value = "${user.home}/algos/it/algos/albergo/ristorante/categoria"/>
+    <property name = "pathMainClass" value = "albergo/ristorante/categoria"/>
+    <property name = "mainClass" value = "CategoriaModulo"/>
+
+    <!-- proprieta' globali di questo build -->
+    <property name = "Implementation-Title" value = "Categoria"/>
+    <property name = "Implementation-Vendor" value = "Alex"/>
+    <property name = "Implementation-Version" value = "1.0"/>
+    <property name = "Specification-Version" value = "23-04-2007"/>
+
+    <!-- librerie utilizzate (nel manifest) -->
+    <property name = "librerie" value = "base.jar"/>
+
+    <!-- script precedente da richiamare -->
+    <property name = "antCartella" location = "${user.home}/algos/it/algos/base/"/>
+    <property name = "antFileName" value = "base.xml"/>
+
+    <!-- da qui in poi non va cambiato nulla -->
+    <property name = "baseFolder" value = "it/algos"/>
+    <property name = "src" location = "${basedir}"/>
+    <property name = "baseOutFolder" location = "${user.home}/algos-work/"/>
+    <property name = "baseBuildFolder" location = "${baseOutFolder}/build"/>
+    <property name = "baseDistFolder" location = "${baseOutFolder}/dist"/>
+    <property name = "baseLibFolder" location = "${baseOutFolder}/librerie"/>
+    <property name = "build" location = "${baseBuildFolder}/${ant.project.name}"/>
+    <property name = "dist" location = "${baseDistFolder}/${ant.project.name}"/>
+    <property name = "mainPath" value = "${baseFolder}/${pathMainClass}/${mainClass}"/>
+    <property name = "jarFile" value = "${dist}/${ant.project.name}.jar"/>
+
+
+    <target name = "init" description = "regolazioni iniziali">
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir = "${build}"/>
+    </target>
+
+
+    <target name = "compile" description = "compilazione dei sorgenti .java -> .class">
+        <!-- Compila il java code da ${src} a ${build} -->
+        <javac srcdir = "${src}" destdir = "${build}" includes = "**/*.java">
+            <classpath>
+                <fileset dir = "${baseLibFolder}" includes = "**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+
+    <target name = "copy" description = "copia i files accessori">
+        <!-- Copia tutti i file non .java da ${src} a ${build} -->
+        <copy todir = "${build}/${baseFolder}/${ant.project.name}">
+            <fileset dir = "${src}">
+                <exclude name = "**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+    <target name = "dist"
+            description = "generazione della distribuzione">
+        <!-- Crea la directory per la distribuzione -->
+        <mkdir dir = "${dist}"/>
+
+        <!-- Metti tutto ${build} nel file base.jar -->
+        <jar jarfile = "${jarFile}">
+            <manifest>
+                <attribute name = "Created-By" value = "Algos"/>
+                <attribute name = "Class-Path" value = "${librerie}"/>
+                <attribute name = "Main-Class" value = "${mainPath}"/>
+                <attribute name = "Implementation-Title" value = "${Implementation-Title}"/>
+                <attribute name = "Implementation-Vendor" value = "${Implementation-Vendor}"/>
+                <attribute name = "Implementation-Version" value = "${Implementation-Version}"/>
+                <attribute name = "Specification-Version" value = "${Specification-Version}"/>
+            </manifest>
+            <zipfileset dir = "${build}"/>
+        </jar>
+    </target>
+
+
+    <target name = "copyJarToLib" description = "copia il jar nella cartella delle librerie">
+        <!--<copy todir="${baseLibFolder}">-->
+        <!--<fileset file="${jarFile}"/>-->
+        <!--</copy>-->
+    </target>
+
+
+    <target name = "copylib" description = "copia le librerie nella cartella del jar finale">
+        <!-- Copia tutti i file non .java da ${baseLibFolder} a ${dist} -->
+        <copy overwrite = "true" todir = "${dist}">
+            <fileset dir = "${baseLibFolder}"/>
+        </copy>
+    </target>
+
+
+    <target name = "scriptDepend"
+            description = "richiama uno script di ant dal quale questo build dipende">
+        <ant antfile = "${antFileName}" dir = "${antCartella}" inheritall = "false" target = "all"/>
+        <echo message = "${antFileName}"/>
+    </target>
+
+
+    <target name = "clean" description = "pulizia">
+        <!-- Cancella le directory ${build}-->
+        <delete dir = "${build}"/>
+    </target>
+
+
+    <target name = "only"
+            depends = "init, compile, copy, dist, copyJarToLib, copylib, clean"
+            description = "build solo questo progetto"/>
+    <target name = "all"
+            depends = "scriptDepend, only"
+            description = "build anche i progetti propedeutici"/>
+
+</project>

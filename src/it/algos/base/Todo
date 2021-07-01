@@ -1,0 +1,29 @@
+Campo albero
+import-export
+    import
+        finestra a 3 liste parallele
+        lista sin: struttura del file import
+        lista destra: elenco dei campi della tavola di riferimento riordinabile
+        per allinearla ai campi di riferimento
+        lista centrale: comandi - 1 check per decidere se importare il campo
+        nel caso di import verso campo linkato popup per scegliere tavola e campo
+        di tramite - automatico se ce n'� uno solo
+        il popup presenta tutti i campi unici della tavola di tramite
+        se si importa un numero di default non usa la tavola di tramite
+        lista centrale: comandi - 1 radio bottone per identificare opzionalmente
+        il campo chiave dei dati da importare
+        campo chiave identificato: funziona tutto in automatico; se trova un
+        record lo modifica, altrimenti lo aggiunge
+        campo chiave non identificato: modifica tutto a partire dal primo, nello
+        ordine che trova nel database (e non nella lista) e poi crea nuovi record
+
+
+modulo vuoto
+stampe liste
+progress bar
+lista tree
+
+
+Formatter da rimettere: CVTestoField.assegnaFormatter() riga 213
+
+

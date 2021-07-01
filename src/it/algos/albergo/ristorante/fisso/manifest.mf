@@ -1,0 +1,3 @@
+Created-By: Algos
+Class-Path: base.jar
+Main-Class: it/algos/albergo/ristorante/fisso/FissoModulo
